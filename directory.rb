@@ -6,10 +6,22 @@ def input_students
   # while the name is not empty, repeat this code
   while true
     # get the name
+    puts "Please enter the student's full name:"
     name = gets.chomp
     break if name.empty?
+    puts "Please enter the student's cohort:"
+    cohort = gets.chomp
+    puts "Please enter the student's hobbies:"
+    hobbies = gets.chomp
+    puts "Please enter the student's country of birth:"
+    country_of_birth = gets.chomp
     # add the student hash to the array
-    students << {name: name, cohort: :november}
+    students << {
+      name: name,
+      cohort: cohort,
+      hobbies: hobbies,
+      country_of_birth: country_of_birth
+    }
     puts "Now we have #{students.count} students"
   end
   # return the array of students
@@ -22,11 +34,8 @@ def print_header
 end
 
 def print_students(students)
-  i = 0
-  until i == students.count
-    student = students[i]
-    puts "#{student[:name]} (#{student[:cohort]} cohort)"
-    i += 1
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort) - Hobbies: #{student[:hobbies]} - Country: #{student[:country_of_birth]}"
   end
 end
 
