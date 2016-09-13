@@ -1,3 +1,7 @@
+def remove_return(str)
+  str.gsub(/\n+/, "")
+end
+
 def input_students
   puts "Please enter the name of the students"
   puts "To finish, just hit return twice"
@@ -7,19 +11,19 @@ def input_students
   while true
     # get the name
     puts "Enter the student's full name or press enter to exit:"
-    name = gets.chomp
+    name = remove_return(gets)
     break if name.empty?
     puts "Please enter the student's cohort (e.g. Sep2016):"
-    cohort = gets.chomp
+    cohort = remove_return(gets)
     if cohort.empty?
       puts "Don't forget to enter the student's cohort or leave it blank for the default value (Sep2016):"
-      cohort = gets.chomp
+      cohort = remove_return(gets)
       cohort = "Sep2016" if cohort.empty?
     end
     puts "Please enter the student's hobbies:"
-    hobbies = gets.chomp
+    hobbies = remove_return(gets)
     puts "Please enter the student's country of birth:"
-    country_of_birth = gets.chomp
+    country_of_birth = remove_return(gets)
     # add the student hash to the array
     students << {
       name: name,
