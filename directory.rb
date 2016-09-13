@@ -27,7 +27,7 @@ def input_students
       hobbies: hobbies,
       country_of_birth: country_of_birth
     }
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{students.count} great student#{students.count == 1 ? '' : 's'}"
   end
   # return the array of students
   students
@@ -50,7 +50,7 @@ def print_sorted_cohorts(students)
 end
 
 def print_footer(names)
-  puts "Overall, #{names.count} we have great students"
+  puts "Overall, we have #{names.count} great student#{names.count == 1 ? '' : 's'}"
 end
 
 # nothing happens until we call the methods
