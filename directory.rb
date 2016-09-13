@@ -38,12 +38,14 @@ def print_header
   puts "--------------------------------".center(80)
 end
 
-def print_students(students)
-  students.each do |student|
+# print students grouped by cohorts
+def print_sorted_cohorts(students)
+  sorted_students = students.sort_by { |k| k[:cohort]}
+  sorted_students.each do |student|
     puts "#{student[:name]}".center(20) +
-         "(#{student[:cohort]} cohort)".center(20) +
-         "- Hobbies: #{student[:hobbies]}".center(20) +
-         "- Country: #{student[:country_of_birth]}".center(20)
+    "(#{student[:cohort]} cohort)".center(20) +
+    "- Hobbies: #{student[:hobbies]}".center(20) +
+    "- Country: #{student[:country_of_birth]}".center(20)
   end
 end
 
@@ -54,5 +56,5 @@ end
 # nothing happens until we call the methods
 students = input_students
 print_header
-print_students(students)
+print_sorted_cohorts(students)
 print_footer(students)
