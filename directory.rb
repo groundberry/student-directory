@@ -6,11 +6,16 @@ def input_students
   # while the name is not empty, repeat this code
   while true
     # get the name
-    puts "Please enter the student's full name:"
+    puts "Enter the student's full name or press enter to exit:"
     name = gets.chomp
     break if name.empty?
-    puts "Please enter the student's cohort:"
+    puts "Please enter the student's cohort (e.g. Sep2016):"
     cohort = gets.chomp
+    if cohort.empty?
+      puts "Don't forget to enter the student's cohort or leave it blank for the default value (Sep2016):"
+      cohort = gets.chomp
+      cohort = "Sep2016" if cohort.empty?
+    end
     puts "Please enter the student's hobbies:"
     hobbies = gets.chomp
     puts "Please enter the student's country of birth:"
@@ -18,7 +23,7 @@ def input_students
     # add the student hash to the array
     students << {
       name: name,
-      cohort: cohort,
+      cohort: cohort.gsub(/\s+/,"").capitalize.to_sym,
       hobbies: hobbies,
       country_of_birth: country_of_birth
     }
