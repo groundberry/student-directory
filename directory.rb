@@ -1,5 +1,12 @@
 @students = [] # an empty array accessible to al methods
 
+def store_student(name, cohort)
+  @students << {
+    name: name,
+    cohort: cohort.gsub(/\s+/,"").capitalize.to_sym
+  }
+end
+
 def input_students
   puts "Please enter the name of the students"
   puts "To finish, just hit return twice"
@@ -15,10 +22,7 @@ def input_students
       cohort = "Sep2016" if cohort.empty?
     end
     # add the student hash to the array
-    @students << {
-      name: name,
-      cohort: cohort.gsub(/\s+/,"").capitalize.to_sym
-    }
+    store_student(name, cohort)
     puts "Now we have #{@students.count} great student#{@students.count == 1 ? '' : 's'}"
   end
 end
@@ -72,7 +76,7 @@ def load_students(filename = "students.csv") # default value to preserve the ori
   file = File.open(filename, "r") # to make it work with arbitrary filenames
   file.readlines.each do |line|
     name, cohort = line.chomp.split(", ")
-    @students << {name: name, cohort: cohort.to_sym}
+    store_student(name, cohort)
   end
   file.close
 end
