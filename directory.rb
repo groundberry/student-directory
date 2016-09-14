@@ -60,9 +60,14 @@ def show_students
   print_footer
 end
 
-def save_students(filename = "students.csv")
-  # opne the file for writing
-  file = File.open(filename, "w")
+def ask_filename
+  puts "Please enter the filename:"
+  gets.chomp
+end
+
+def save_students
+  # open the file for writing
+  file = File.open(ask_filename, "w")
   # iterate over the array of students
   @students.each do |student|
     student_data = [student[:name], student[:cohort]]
@@ -72,8 +77,8 @@ def save_students(filename = "students.csv")
   file.close
 end
 
-def load_students(filename = "students.csv") # default value to preserve the original functionality
-  file = File.open(filename, "r") # to make it work with arbitrary filenames
+def load_students
+  file = File.open(ask_filename, "r") # to make it work with arbitrary filenames
   file.readlines.each do |line|
     name, cohort = line.chomp.split(", ")
     store_student(name, cohort)
