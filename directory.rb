@@ -38,10 +38,9 @@ def print_header
   puts "--------------------------------".center(80)
 end
 
-# print students grouped by cohorts
-def print_sorted_cohorts(students)
-  sorted_students = students.sort_by { |k| k[:cohort]}
-  sorted_students.each do |student|
+# print students
+def print_students(students)
+  students.each do |student|
     puts "#{student[:name]}".center(20) +
     "(#{student[:cohort]} cohort)".center(20) +
     "- Hobbies: #{student[:hobbies]}".center(20) +
@@ -53,14 +52,34 @@ def print_footer(names)
   puts "Overall, we have #{names.count} great student#{names.count == 1 ? '' : 's'}"
 end
 
-# nothing happens until we call the methods
-students = input_students
-if !students.empty?
-  print_header
-  print_sorted_cohorts(students)
-  print_footer(students)
-else
-  print_header
-  puts "(There are no students registered yet)".center(80)
-  puts
+def interactive_menu
+  students = []
+  loop do
+    #1. print the menu and ask the user what to do
+    puts "What do you wan to do? Select one of the following options:"
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    # 2. read the input and save it into a variable
+    selection = gets.chomp
+    # 3. do what the user has asked
+    case selection
+      when "1"
+        # input students
+        students = input_students
+      when "2"
+        # show the students
+        print_header
+        print_students(students)
+        print_footer(students)
+      when "9"
+        puts "----------".center(22)
+        puts
+        exit # this will cause the program to terminate
+      else
+        puts "I don't know what you meant, try again"
+    end
+  end
 end
+
+interactive_menu
