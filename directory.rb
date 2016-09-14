@@ -97,14 +97,24 @@ def process(selection)
   case selection
     when "1"
       input_students
+      puts "* Student information successfuly entered *"
+      puts
     when "2"
       show_students
+      puts "* Student information successfully displayed *"
+      puts
     when "3"
       save_students
+      puts "* Input successfully saved *"
+      puts
     when "4"
       load_students
+      puts "* Input successfully loaded *"
+      puts
     when "9"
       puts "----------".center(22)
+      puts
+      puts "* Program successfully closed *"
       puts
       exit # this will cause the program to terminate
     else
